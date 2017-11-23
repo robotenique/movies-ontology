@@ -1,4 +1,16 @@
 import re
+import json
+import pickle
+
+# Save python objects in binary format
+def save_obj(obj, name):
+    with open('obj/'+ name + '.pkl', 'wb') as f:
+        pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
+
+def load_obj(name):
+    with open('obj/' + name + '.pkl', 'rb') as f:
+        return pickle.load(f)
+
 class Act(object):
     def wsearch(w):
         return re.compile(r'\b({0})\b'.format(w), flags=re.IGNORECASE).search
@@ -27,14 +39,29 @@ def find_actor_line(l, f):
     if l and l[0] != '\t':
         for i, a in enumerate(act_l):
             if all(x(l.lower().replace(",","")) for x in a.regexp()) and not act_d.get(act_n[i], None):
-                act_d[act_n[i]] = []
-                cs = [l[l.find('\t'):].replace("\t","")]
+                cs = [l[l.find('\t'):].replace("\t","").replace("\n","")]
                 l = f.readline()
                 while l and l[0] == '\t':
-                    cs.append(l.replace("\t", ""))
+                    cs.append(l.replace("\t", "").replace("\n",""))
                     l = f.readline()
-                act_d[act_n[i]].append("".join(cs))
+                act_d[act_n[i]] = cs
     return l
+
+def act_d_builder(l, f):
+        if l and l[0] != '\t':
+            print(l[:l.find('\t')].strip())
+            if not act_d.get(l[:l.find('\t')].strip(), None):
+                idx = l[:l.find('\t')].strip()
+                if not list(filter(None, idx)):
+                    return
+                cs = [l[l.find('\t'):].replace("\t","").replace("\n","")]
+                l = f.readline()
+                while l and l[0] == '\t':
+                    cs.append(l.replace("\t", "").replace("\n",""))
+                    l = f.readline()
+                act_d[idx] = cs
+        return l
+
 
 
 with open(act_man_f, "r", encoding='latin-1') as m, open(act_woman_f, "r", encoding='latin-1') as w:
@@ -42,10 +69,10 @@ with open(act_man_f, "r", encoding='latin-1') as m, open(act_woman_f, "r", encod
     lm = m.readline()
     lw = w.readline()
     while lm or lw:
-        lm, lw = find_actor_line(lm, m), find_actor_line(lw, w)
+        lm, lw = act_d_builder(lm, m), act_d_builder(lw, w)
         lm, lw = m.readline(),  w.readline()
         if c%50000 == 0:
             print(f"{c}º iteration...")
         c+=1
 
-print(act_d)
+save_obj(act_d, "actors_actresses")
