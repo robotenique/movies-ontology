@@ -3,6 +3,11 @@ import json
 import pickle
 
 # Save python objects in binary format
+# IMPORTANT: 'movies' can relate to series as well... That's IMDB folks!
+# - obj/acts.pkl: Dict where key is an actor, and the values the movies
+# - obj/directs.pkl: Dict where key is director, and the values the movies
+# - obj/movies_actors.pkl: All actors which participated in the movies from acts AND directs
+# - obj/movies_directors.pkl: All directors which participated in the movies from acts AND directs
 def save_obj(obj, name):
     with open('obj/'+ name + '.pkl', 'wb') as f:
         pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
@@ -30,10 +35,10 @@ class Act(object):
 #gen_st = "acts"
 #act_n = ["Quentin Tarantino", "Wes Anderson"]
 #gen_st = "directs"
-act_man_f = "actors.list"
-act_woman_f = "actresses.list"
-#act_man_f = "directors.list"
-#act_woman_f = "t"
+#act_man_f = "actors.list"
+#act_woman_f = "actresses.list"
+act_man_f = "directors.list"
+act_woman_f = "t"
 #act_l = [(lambda n: Act(n[0], n[1]))([t.lower() for t in s.split()]) for s in act_n]
 act_d = {}
 mov_d = {}
@@ -94,10 +99,12 @@ def mov_actors_builder(l, f, movd):
             mv = mv[:st_op(mv)].strip()
             if mv in movd:
                 if not mov_d.get(mv, None):
-                    mov_d[mv] = set(idx)
+                    mov_d[mv] = set()
+                    mov_d[mv].add(idx)
                 else:
                     mov_d[mv].add(idx)
-                print(f"Adicionado em {mv} = {idx}")
+                if(mv == "Plain Pleasures"):
+                    print(f"Adicionado em {mv} = {idx}")
             l = f.readline()
     return l
 
@@ -112,11 +119,16 @@ def build_movieDict():
             movd.add(mov)
     return movd
 
+def print_dict(name):
+    t = load_obj(name)
+    for k in t.keys():
+        print(k)
+        for m in t[k]:
+            print(f"\t\t{m}")
+        print("")
+
 def main():
-    #print(load_obj("movies_actors"))
-    #movd = build_movieDict()
-    #print("Taxi Driver" in movd)
-    #exit()
+    movd = build_movieDict()
     with open(act_man_f, "r", encoding='latin-1') as m, open(act_woman_f, "r", encoding='latin-1') as w:
         c = 0
         lm = m.readline()
@@ -124,12 +136,11 @@ def main():
         while lm or lw:
             lm, lw = mov_actors_builder(lm, m, movd), mov_actors_builder(lw, w, movd)
             lm, lw = m.readline(),  w.readline()
-            if c%50 == 0:
+            if c%50000 == 0:
                 print(f"{c}º iteration...")
-                input("continua...")
+                #input("continua...")
             c+=1
 
-    #print(json.dumps(mov_d, indent=5))
-    save_obj(mov_d,"movies_actors")
+    #save_obj(mov_d,"movies_directors")
 if __name__ == '__main__':
     main()
