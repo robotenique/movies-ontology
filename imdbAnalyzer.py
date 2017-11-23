@@ -2,8 +2,10 @@ import re
 import json
 import pickle
 
+#NOTE: Not very readable for the basic people U_U
+
 # Save python objects in binary format
-# IMPORTANT: 'movies' can relate to series as well... That's IMDB folks!
+# !IMPORTANT: 'movies' can relate to series as well... That's IMDB folks!
 # - obj/acts.pkl: Dict where key is an actor, and the values the movies
 # - obj/directs.pkl: Dict where key is director, and the values the movies
 # - obj/movies_actors.pkl: All actors which participated in the movies from acts AND directs
@@ -33,13 +35,13 @@ class Act(object):
 ## Finding Actors Information!
 #act_n = ["Uma Thurman", "Harvey Keitel", "Bill Murray", "Frances McDormand"]
 #gen_st = "acts"
-#act_n = ["Quentin Tarantino", "Wes Anderson"]
-#gen_st = "directs"
+act_n = ["Quentin Tarantino", "Wes Anderson"]
+gen_st = "directs"
 #act_man_f = "actors.list"
 #act_woman_f = "actresses.list"
 act_man_f = "directors.list"
 act_woman_f = "t"
-#act_l = [(lambda n: Act(n[0], n[1]))([t.lower() for t in s.split()]) for s in act_n]
+act_l = [(lambda n: Act(n[0], n[1]))([t.lower() for t in s.split()]) for s in act_n]
 act_d = {}
 mov_d = {}
 
@@ -56,7 +58,6 @@ def st_op(t):
         if count > 20:
             return len(t)
     return p
-
 
 def find_person_movie(l, f):
     if l and l[0] != '\t':
@@ -108,8 +109,6 @@ def mov_actors_builder(l, f, movd):
             l = f.readline()
     return l
 
-
-
 def build_movieDict():
     actd = load_obj("acts")
     drcd = load_obj("directs")
@@ -120,6 +119,7 @@ def build_movieDict():
     return movd
 
 def print_dict(name):
+    "DON'T INCLUDE THE .pkl IN THE 'name' ARG!!"
     t = load_obj(name)
     for k in t.keys():
         print(k)
@@ -128,19 +128,21 @@ def print_dict(name):
         print("")
 
 def main():
+    print_dict("directs")
+    exit()
     movd = build_movieDict()
     with open(act_man_f, "r", encoding='latin-1') as m, open(act_woman_f, "r", encoding='latin-1') as w:
         c = 0
         lm = m.readline()
         lw = w.readline()
         while lm or lw:
-            lm, lw = mov_actors_builder(lm, m, movd), mov_actors_builder(lw, w, movd)
+            lm, lw = find_person_movie(lm, m), find_person_movie(lw, w)
             lm, lw = m.readline(),  w.readline()
             if c%50000 == 0:
                 print(f"{c}º iteration...")
                 #input("continua...")
             c+=1
 
-    #save_obj(mov_d,"movies_directors")
+    #save_obj(act_d,"directs")
 if __name__ == '__main__':
     main()
