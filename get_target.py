@@ -1,23 +1,39 @@
 #
-# This program gets the movies we are interested in
+# This program gets the lists we are interested in
 #
 
 import json
 import sys
+import re
 
 targets = ["Tarantino, Quentin", "Anderson, Wes", "Thurman, Uma", "McDormand, Frances", "Keitel, Harvey", "Murray, Bill"]
 
 def main():
     flag = ""
     movies_cast = {}
+    repeated = {}
     if len(sys.argv) == 2 and sys.argv[1] == "-m":
         flag = "-m"
     with open(f"movies-cast{flag}.json", "r", encoding="ISO-8859-1") as f:
         movies = json.load(f)
-    for movie, v in movies.items():
+    for full_title, v in movies.items():
         for targ in targets:
-            if not movies_cast.get(movie) and ((targ in v["actors"]) or (targ in v["directors"])):
+            if (targ in v["actors"]) or (targ in v["directors"]):
+                m = re.match("(?P<title>.+?) \((?P<year>[0-9\?]+?)([\/IVXLCD]+)*\)$", full_title)
+                movie = m.group("title")
+                year = m.group("year")
+                #print(full_title)
+                #print(movie)
+                if movies_cast.get(movie):
+                    if not repeated.get(movie):
+                        tmp = movies_cast[movie]
+                        movies_cast[movie + " " + tmp["year"]] = tmp
+                        movies_cast.pop(movie)
+                        repeated[movie] = True
+                    movie = movie + " " + year
                 movies_cast[movie] = v
+                movies_cast[movie]["year"] = year
+                break
     actors = []
     directors = []
     movies = {}

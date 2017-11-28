@@ -30,7 +30,7 @@ def main():
         f.readline()
     actual = False
     d = {}
-    m1 = f"\t+\"?(?P<title>.+?)\"? *(\(.*?\))? *(\((?P<year>[0-9\?]+?)([\/IVXLCD]+)*\)){add}"
+    m1 = f"\t+\"?(?P<title>.+?)\"? *(\(.*?\))? *(?P<year>\([0-9\?]+?([\/IVXLCD]+)*\)){add}"
     m2 = "(?P<name>.*)" + m1
     for i, line in enumerate(f):
         if i%50000 == 0:
@@ -59,7 +59,7 @@ def main():
             if not d.get(actual):
                 d[actual] = {}
         if not flag or (flag and not re.search("(\(VG\)|\(TV\))", line)):
-            d[actual][m.group("title")] = m.group("year")
+            d[actual][m.group("title") + " " + m.group("year")] = True
     g = open(f"{listName}{flag}.json", "wb+")
     g.write(json.dumps(d, indent=1, ensure_ascii=False).encode("utf8"))
     g.close()

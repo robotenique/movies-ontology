@@ -1,0 +1,421 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.ime.usp.br/~renata/FOAF-modified"
+     xml:base="http://www.ime.usp.br/~renata/FOAF-modified"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:renata="http://www.ime.usp.br/~renata/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+     xmlns:wot="http://xmlns.com/wot/0.1/"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <owl:Ontology rdf:about="http://www.ime.usp.br/~renata/FOAF-modified">
+        <dc:description>The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.</dc:description>
+        <dc:title>Friend of a Friend (FOAF) vocabulary</dc:title>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/description -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/title -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/title"/>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedmembershipClass -->
+
+    <owl:AnnotationProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedmembershipClass">
+        <rdfs:comment>Indicates the class of individuals that are a member of a Group</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>membershipClass</rdfs:label>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedname -->
+
+    <owl:AnnotationProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedname">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedPerson"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2003/06/sw-vocab-status/ns#term_status -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/06/sw-vocab-status/ns#term_status"/>
+    
+
+
+    <!-- http://xmlns.com/wot/0.1/assurance -->
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/wot/0.1/assurance"/>
+    
+
+
+    <!-- http://xmlns.com/wot/0.1/src_assurance -->
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/wot/0.1/src_assurance"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedacts -->
+
+    <owl:ObjectProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedacts">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedisActedBy"/>
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedActor"/>
+        <rdfs:range rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedMovie"/>
+        <rdfs:label>acts</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifieddepicts -->
+
+    <owl:ObjectProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifieddepicts">
+        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:comment>A thing depicted in this representation.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>depicts</rdfs:label>
+        <vs:term_status>testing</vs:term_status>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifieddirects -->
+
+    <owl:ObjectProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifieddirects">
+        <owl:inverseOf rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedisDirectedBy"/>
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedMovie"/>
+        <rdfs:range rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedDirector"/>
+        <rdfs:label>directs</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedisActedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedisActedBy">
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedMovie"/>
+        <rdfs:range rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedActor"/>
+        <rdfs:label>isActedBy</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedisDirectedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedisDirectedBy">
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedDirector"/>
+        <rdfs:range rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedMovie"/>
+        <rdfs:label>isDirectedBy</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedknows -->
+
+    <owl:ObjectProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedknows">
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedPerson"/>
+        <rdfs:range rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedPerson"/>
+        <rdfs:comment>A person known by this person (indicating some level of reciprocated interaction between the parties).</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>knows</rdfs:label>
+        <vs:term_status>stable</vs:term_status>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedmade -->
+
+    <owl:ObjectProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedmade">
+        <owl:inverseOf rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedmaker"/>
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedAgent"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:comment>Something that was made by this agent.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>made</rdfs:label>
+        <vs:term_status>stable</vs:term_status>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedmaker -->
+
+    <owl:ObjectProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedmaker">
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedAgent"/>
+        <rdfs:comment>An agent that  made this thing.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>maker</rdfs:label>
+        <vs:term_status>stable</vs:term_status>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedage -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedage">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedAgent"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment>The age in years of some agent.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>age</rdfs:label>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedbirthday -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedbirthday">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedAgent"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment>The birthday of this Agent, represented in mm-dd string form, eg. &apos;12-31&apos;.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>birthday</rdfs:label>
+        <vs:term_status>unstable</vs:term_status>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedfamilyName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedfamilyName">
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedPerson"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment>The family name of some person.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>familyName</rdfs:label>
+        <vs:term_status>testing</vs:term_status>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedfirstName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedfirstName">
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedPerson"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment>The first name of a person.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>firstName</rdfs:label>
+        <vs:term_status>testing</vs:term_status>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedgender -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedgender">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedAgent"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment>The gender of this Agent (typically but not necessarily &apos;male&apos; or &apos;female&apos;).</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>gender</rdfs:label>
+        <vs:term_status>testing</vs:term_status>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedlastName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedlastName">
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedPerson"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:comment>The last name of a person.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>lastName</rdfs:label>
+        <vs:term_status>testing</vs:term_status>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedlaunchDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedlaunchDate">
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedMovie"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment>The date the movie premiered.</rdfs:comment>
+        <rdfs:label>launchDate</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedname -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedname"/>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedtitle -->
+
+    <owl:DatatypeProperty rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedtitle">
+        <rdfs:domain rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedMovie"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Title of a movie.</rdfs:comment>
+        <rdfs:label>title</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedActor -->
+
+    <owl:Class rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedActor">
+        <rdfs:subClassOf rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedPerson"/>
+        <rdfs:label>Actor</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedAgent -->
+
+    <owl:Class rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedAgent">
+        <rdfs:comment>An agent (eg. person, group, software or physical artifact).</rdfs:comment>
+        <rdfs:label>Agent</rdfs:label>
+        <vs:term_status>stable</vs:term_status>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedDirector -->
+
+    <owl:Class rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedDirector">
+        <rdfs:subClassOf rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedPerson"/>
+        <rdfs:label>Director</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedMovie -->
+
+    <owl:Class rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedMovie">
+        <rdfs:label>Movie</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ime.usp.br/~renata/FOAF-modifiedPerson -->
+
+    <owl:Class rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedPerson">
+        <rdfs:subClassOf rdf:resource="http://www.ime.usp.br/~renata/FOAF-modifiedAgent"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+        <rdfs:comment>A person.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:label>Person</rdfs:label>
+        <vs:term_status>stable</vs:term_status>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#Class -->
+
+    <owl:Class rdf:about="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing">
+        <rdfs:label>Thing</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing -->
+
+    <owl:Class rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing">
+        <rdfs:label>Spatial Thing</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.ime.usp.br/~renata/FOAF-modifiedname">
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:comment>A name for some thing.</rdfs:comment>
+        <rdfs:label>name</rdfs:label>
+        <vs:term_status>testing</vs:term_status>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.w3.org/2004/02/skos/core#Concept">
+        <rdfs:label>Concept</rdfs:label>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
