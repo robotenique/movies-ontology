@@ -1,0 +1,128 @@
+1)
+SELECT distinct ?actor
+WHERE {
+	?mov foaf:title "Pulp Fiction"^^xsd:string.
+	?actor foaf:acts ?mov.
+}
+
+2)
+SELECT distinct ?mov
+  WHERE {
+	?dir foaf:firstName "Quentin"^^rdfs:Literal;
+	      foaf:lastName "Tarantino"^^rdfs:Literal.
+	?dir foaf:made ?mov.
+  }
+
+3)
+SELECT distinct ?mov
+ WHERE {
+  ?x foaf:firstName "Harvey"^^rdfs:Literal;
+      foaf:lastName "Keitel"^^rdfs:Literal.
+  ?x foaf:acts ?mov.
+}
+
+4)
+SELECT distinct ?mov
+ WHERE {
+  ?x1 foaf:firstName "Harvey"^^rdfs:Literal;
+      foaf:lastName "Keitel"^^rdfs:Literal.
+  ?x2 foaf:firstName "John"^^rdfs:Literal;
+        foaf:lastName "Travolta"^^rdfs:Literal.
+  ?x1 foaf:acts ?mov.
+  ?x2 foaf:acts ?mov.
+}
+
+5)
+SELECT distinct ?dir
+ WHERE {
+  ?x1 foaf:firstName "Harvey"^^rdfs:Literal;
+      foaf:lastName "Keitel"^^rdfs:Literal.
+  ?x2 foaf:firstName "Rod"^^rdfs:Literal;
+        foaf:lastName "Taylor"^^rdfs:Literal.
+  ?x1 foaf:acts ?mov.
+  ?x2 foaf:acts ?mov.
+  ?dir foaf:made ?mov.
+}
+
+6)
+SELECT ?director (COUNT(*) AS ?moviecount)
+ WHERE {
+?x1 foaf:firstName "Harvey"^^rdfs:Literal;
+      foaf:lastName "Keitel"^^rdfs:Literal.
+  ?director foaf:made ?movie.
+  ?x1 foaf:acts ?movie.
+}
+GROUP BY (?director)
+ORDER BY DESC(?moviecount)
+LIMIT 1
+
+7)
+SELECT ?actor (COUNT(*) AS ?moviecount)
+ WHERE {
+?dir foaf:firstName "Quentin"^^rdfs:Literal;
+       foaf:lastName "Tarantino"^^rdfs:Literal.
+  ?actor foaf:acts ?movie.
+  ?dir foaf:made ?movie.
+ }
+GROUP BY (?actor)
+ORDER BY DESC(?moviecount)
+LIMIT 1
+
+# COMO FAZER ISSO FUNCIONAR? É pra dar o mesmo resultado que o de cima!
+SELECT ?actor (COUNT(*) AS ?moviecount)
+ WHERE {
+?dir foaf:firstName "Quentin"^^rdfs:Literal;
+       foaf:lastName "Tarantino"^^rdfs:Literal.
+  ?actor foaf:acts ?movie.
+  ?movie foaf:isActedBy ?actor.
+ }
+GROUP BY (?actor)
+ORDER BY DESC(?moviecount)
+LIMIT 1
+
+8)
+SELECT distinct ?dir
+ WHERE {
+?x1 foaf:firstName "Harvey"^^rdfs:Literal;
+      foaf:lastName "Keitel"^^rdfs:Literal.
+?x2 foaf:firstName "John"^^rdfs:Literal;
+      foaf:lastName "Travolta"^^rdfs:Literal.
+  ?dir foaf:made ?mov.
+   ?x1 foaf:acts ?mov.
+   ?x2 foaf:acts ?mov.
+   ?mov foaf:launchDate ?date.
+  FILTER (?date > 1950 && ?date < 2000)
+ }
+
+9)
+# Não retorna os atores X e Y, mas APENAS quem atuou junto quando X e Y atuaram entre N1 e N2
+SELECT distinct ?actor
+ WHERE {
+?x1 foaf:firstName "Harvey"^^rdfs:Literal;
+      foaf:lastName "Keitel"^^rdfs:Literal.
+?x2 foaf:firstName "John"^^rdfs:Literal;
+      foaf:lastName "Travolta"^^rdfs:Literal.
+    ?dir foaf:made ?mov.
+    ?x1 foaf:acts ?mov.
+    ?x2 foaf:acts ?mov.
+    ?actor foaf:acts ?movie.
+    ?mov foaf:launchDate ?date.
+  FILTER (?date > 1950 && ?date < 2000 && ?actor != ?x1 && ?actor != ?x2)
+ }
+
+10)
+SELECT distinct ?mov
+ WHERE {
+  ?movieF foaf:title "Inglourious Basterds"^^xsd:string.
+?x1 foaf:firstName "Larry"^^rdfs:Literal;
+      foaf:lastName "Bishop"^^rdfs:Literal.
+?x2 foaf:firstName "John"^^rdfs:Literal;
+      foaf:lastName "Travolta"^^rdfs:Literal.
+  ?dir foaf:made ?movieF.
+  ?dir foaf:made ?mov.
+{?x1 foaf:acts ?mov}
+UNION
+{?x2 foaf:acts ?mov} 
+ }
+
+
