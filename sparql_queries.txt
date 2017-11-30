@@ -68,18 +68,6 @@ GROUP BY (?actor)
 ORDER BY DESC(?moviecount)
 LIMIT 1
 
-# COMO FAZER ISSO FUNCIONAR? É pra dar o mesmo resultado que o de cima!
-SELECT ?actor (COUNT(*) AS ?moviecount)
- WHERE {
-?dir foaf:firstName "Quentin"^^rdfs:Literal;
-       foaf:lastName "Tarantino"^^rdfs:Literal.
-  ?actor foaf:acts ?movie.
-  ?movie foaf:isActedBy ?actor.
- }
-GROUP BY (?actor)
-ORDER BY DESC(?moviecount)
-LIMIT 1
-
 8)
 SELECT distinct ?dir
  WHERE {
@@ -95,7 +83,6 @@ SELECT distinct ?dir
  }
 
 9)
-# Não retorna os atores X e Y, mas APENAS quem atuou junto quando X e Y atuaram entre N1 e N2
 SELECT distinct ?actor
  WHERE {
 ?x1 foaf:firstName "Harvey"^^rdfs:Literal;
@@ -105,7 +92,7 @@ SELECT distinct ?actor
     ?dir foaf:made ?mov.
     ?x1 foaf:acts ?mov.
     ?x2 foaf:acts ?mov.
-    ?actor foaf:acts ?movie.
+    ?actor foaf:acts ?mov.
     ?mov foaf:launchDate ?date.
   FILTER (?date > 1950 && ?date < 2000 && ?actor != ?x1 && ?actor != ?x2)
  }
