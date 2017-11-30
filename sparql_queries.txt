@@ -10,9 +10,9 @@ WHERE {
 2)
 SELECT distinct ?Movies
   WHERE {
-	?dir foaf:firstName "Quentin"^^rdfs:Literal;
-	      foaf:lastName "Tarantino"^^rdfs:Literal.
-	?dir foaf:made ?mov.
+  ?dir foaf:firstName "Quentin"^^rdfs:Literal;
+        foaf:lastName "Tarantino"^^rdfs:Literal.
+  ?dir foaf:made ?mov.
   ?mov rdfs:label ?Movies.
   }
 
