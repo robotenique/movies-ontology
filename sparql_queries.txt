@@ -11,7 +11,7 @@ WHERE {
 SELECT distinct ?Movies
   WHERE {
   ?dir foaf:firstName "Wes"^^rdfs:Literal;
-        foaf:lastName "Anderson"^^rdfs:Literal.
+        foaf:familyName "Anderson"^^rdfs:Literal.
   ?dir foaf:made ?mov.
   ?mov rdfs:label ?Movies.
   }
@@ -20,7 +20,7 @@ SELECT distinct ?Movies
 SELECT distinct ?Movies
  WHERE {
   ?x foaf:firstName "Harvey"^^rdfs:Literal;
-      foaf:lastName "Keitel"^^rdfs:Literal.
+      foaf:familyName "Keitel"^^rdfs:Literal.
   ?x foaf:acts ?mov.
   ?mov rdfs:label ?Movies.
 }
@@ -29,9 +29,9 @@ SELECT distinct ?Movies
 SELECT distinct ?Movies
  WHERE {
   ?x1 foaf:firstName "Bill"^^rdfs:Literal;
-      foaf:lastName "Murray"^^rdfs:Literal.
+      foaf:familyName "Murray"^^rdfs:Literal.
   ?x2 foaf:firstName "Harvey"^^rdfs:Literal;
-        foaf:lastName "Keitel"^^rdfs:Literal.
+        foaf:familyName "Keitel"^^rdfs:Literal.
   ?x1 foaf:acts ?mov.
   ?x2 foaf:acts ?mov.
   ?mov rdfs:label ?Movies.
@@ -41,9 +41,9 @@ SELECT distinct ?Movies
 SELECT distinct ?Directors
  WHERE {
   ?x1 foaf:firstName "Uma"^^rdfs:Literal;
-      foaf:lastName "Thurman"^^rdfs:Literal.
+      foaf:familyName "Thurman"^^rdfs:Literal.
   ?x2 foaf:firstName "Harvey"^^rdfs:Literal;
-        foaf:lastName "Keitel"^^rdfs:Literal.
+        foaf:familyName "Keitel"^^rdfs:Literal.
   ?x1 foaf:acts ?mov.
   ?x2 foaf:acts ?mov.
   ?dir foaf:made ?mov.
@@ -54,7 +54,7 @@ SELECT distinct ?Directors
 SELECT ?Director (COUNT(*) AS ?moviecount)
  WHERE {
 ?x1 foaf:firstName "Bill"^^rdfs:Literal;
-      foaf:lastName "Murray"^^rdfs:Literal.
+      foaf:familyName "Murray"^^rdfs:Literal.
   ?director foaf:made ?movie.
   ?director rdfs:label ?Director.
   ?x1 foaf:acts ?movie.
@@ -67,7 +67,7 @@ LIMIT 1
 SELECT ?Actor (COUNT(*) AS ?moviecount)
  WHERE {
 ?dir foaf:firstName "Wes"^^rdfs:Literal;
-       foaf:lastName "Anderson"^^rdfs:Literal.
+       foaf:familyName "Anderson"^^rdfs:Literal.
   ?actor foaf:acts ?movie.  
   ?dir foaf:made ?movie.
   ?actor rdfs:label ?Actor.
@@ -80,9 +80,9 @@ LIMIT 1
 SELECT distinct ?Directors
  WHERE {
 ?x1 foaf:firstName "Bill"^^rdfs:Literal;
-      foaf:lastName "Murray"^^rdfs:Literal.
+      foaf:familyName "Murray"^^rdfs:Literal.
 ?x2 foaf:firstName "Wes"^^rdfs:Literal;
-      foaf:lastName "Anderson"^^rdfs:Literal.
+      foaf:familyName "Anderson"^^rdfs:Literal.
   ?dir foaf:made ?mov.
   ?dir rdfs:label ?Directors.
    ?x1 foaf:acts ?mov.
@@ -96,9 +96,9 @@ SELECT distinct ?Directors
 SELECT distinct ?Actors
  WHERE {
 ?x1 foaf:firstName "Harvey"^^rdfs:Literal;
-      foaf:lastName "Keitel"^^rdfs:Literal.
+      foaf:familyName "Keitel"^^rdfs:Literal.
 ?x2 foaf:firstName "Uma"^^rdfs:Literal;
-      foaf:lastName "Thurman"^^rdfs:Literal.
+      foaf:familyName "Thurman"^^rdfs:Literal.
     ?dir foaf:made ?mov.
     ?x1 foaf:acts ?mov.
     ?x2 foaf:acts ?mov.
@@ -113,9 +113,9 @@ SELECT distinct ?Movies
  WHERE {
   ?movieF foaf:title "The Grand Budapest Hotel"^^xsd:string.
 ?x1 foaf:firstName "Bill"^^rdfs:Literal;
-      foaf:lastName "Murray"^^rdfs:Literal.
+      foaf:familyName "Murray"^^rdfs:Literal.
 ?x2 foaf:firstName "John"^^rdfs:Literal;
-      foaf:lastName "Travolta"^^rdfs:Literal.
+      foaf:familyName "Travolta"^^rdfs:Literal.
   ?dir foaf:made ?movieF.
   ?dir foaf:made ?mov.
   ?mov rdfs:label ?Movies.
