@@ -51,7 +51,7 @@ def init_director(director, d):
     rdf +=  "".join(tempL)
     rdf += f"""
         <renata:FOAF-modifiedfirstName rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">{first_name}</renata:FOAF-modifiedfirstName>
-        <renata:FOAF-modifiedlastName rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">{last_name}</renata:FOAF-modifiedlastName>
+        <renata:FOAF-modifiedfamilyName rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">{last_name}</renata:FOAF-modifiedfamilyName>
     </owl:NamedIndividual>
     """
 
@@ -83,7 +83,7 @@ def init_actor(actor, d):
     rdf +=  "".join(tempL)
     rdf += f"""
         <renata:FOAF-modifiedfirstName rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">{first_name}</renata:FOAF-modifiedfirstName>
-        <renata:FOAF-modifiedlastName rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">{last_name}</renata:FOAF-modifiedlastName>
+        <renata:FOAF-modifiedfamilyName rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">{last_name}</renata:FOAF-modifiedfamilyName>
     </owl:NamedIndividual>
     """
 
